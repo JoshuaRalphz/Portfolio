@@ -388,39 +388,35 @@ export default function Home() {
     role="dialog"
     aria-label="Image preview"
   >
-          <div 
-      className="relative max-w-5xl w-full max-h-[90vh] rounded-lg shadow-xl overflow-hidden transition-transform duration-300 transform bg-white"
+    <div 
+      className="relative w-full max-w-5xl max-h-[90vh] rounded-lg shadow-xl overflow-hidden transition-transform duration-300 transform bg-white"
       onClick={(e) => e.stopPropagation()}
     >
-      {/* Navigation controls for gallery (if needed) */}
-      <div className="absolute top-0 left-0 right-0 p-4 flex justify-between items-center bg-gradient-to-b from-black/70 to-transparent z-10">
-        <div className="text-white font-medium truncate max-w-lg opacity-90">
-          {/* Optional: Display image title/caption here */}
-        </div>
-        <div className="flex items-center gap-3">
-          <button 
-            className="bg-black/40 hover:bg-black/60 rounded-full p-2 transition-colors text-white/80 hover:text-white flex items-center justify-center"
-            onClick={() => setSelectedImage(null)}
-            aria-label="Close modal"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-            </svg>
-          </button>
-        </div>
+      {/* Close Button */}
+      <div className="absolute top-0 left-0 right-0 p-4 flex justify-end items-center bg-gradient-to-b from-black/70 to-transparent z-10">
+        <button 
+          className="bg-black/40 hover:bg-black/60 rounded-full p-2 transition-colors text-white/80 hover:text-white flex items-center justify-center"
+          onClick={() => setSelectedImage(null)}
+          aria-label="Close modal"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+          </svg>
+        </button>
       </div>
       
-      {/* Main image container with loading state */}
+      {/* Image Container */}
       <div className="w-full h-full flex items-center justify-center bg-gray-900/50">
         <Image
-          src={selectedImage || ''}
+          src={selectedImage}
           alt="Full size preview"
-          fill
-          className="object-contain transition-opacity duration-300 opacity-80"
+          width={800}
+          height={600}
+          className="object-contain w-full h-full transition-opacity duration-300 opacity-80"
           onLoadingComplete={(e) => e.classList.add('opacity-100')}
+          priority
         />
       </div>
-      <div className="absolute bottom-0 left-0 right-0 p-4 flex justify-between items-center bg-gradient-to-t from-black/70 to-transparent z-10"></div>
     </div>
   </div>
 )}
