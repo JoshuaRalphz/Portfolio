@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import { MenuIcon, XIcon } from "lucide-react";
+import Image from 'next/image';
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -80,7 +81,7 @@ export default function Home() {
       <section id="hero" className="container mx-auto px-4 pt-32 pb-16 md:py-40 flex flex-col items-center justify-center min-h-screen">
         <div className="max-w-3xl text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Hi, I'm <span className="text-primary">Joshua Ralph Adrian Solomon</span>
+            Hi, I&apos;m <span className="text-primary">Joshua Ralph Adrian Solomon</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
             Full Stack Developer specializing in creating elegant solutions to complex problems
@@ -192,9 +193,11 @@ export default function Home() {
         <Card className="h-full overflow-hidden border-0 rounded-xl shadow-lg hover:shadow-xl transition-all">
           <div className="relative h-56 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10"></div>
-            <img 
-              src={project.image} 
-              alt={project.title} 
+            <Image
+              src={project.image}
+              alt={project.title}
+              width={500}
+              height={300}
               className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
             />
             <div className="absolute top-4 right-4 z-20">
@@ -360,9 +363,11 @@ export default function Home() {
                   <p className="text-sm text-muted-foreground">{event.description}</p>
                   {/* Hover Image */}
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex items-center justify-center">
-                    <img 
-                      src={event.image} 
-                      alt={event.title} 
+                    <Image
+                      src={event.image}
+                      alt={event.title}
+                      width={500}
+                      height={300}
                       className="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
@@ -407,12 +412,12 @@ export default function Home() {
       
       {/* Main image container with loading state */}
       <div className="w-full h-full flex items-center justify-center bg-gray-900/50">
-        <img 
-          src={selectedImage} 
-          alt="Full size preview" 
-          className="w-full h-full object-contain transition-opacity duration-300 opacity-80"
-          loading="eager"
-          onLoad={(e) => (e.currentTarget as HTMLImageElement).classList.add('opacity-100')}
+        <Image
+          src={selectedImage || ''}
+          alt="Full size preview"
+          fill
+          className="object-contain transition-opacity duration-300 opacity-80"
+          onLoadingComplete={(e) => e.classList.add('opacity-100')}
         />
       </div>
       <div className="absolute bottom-0 left-0 right-0 p-4 flex justify-between items-center bg-gradient-to-t from-black/70 to-transparent z-10"></div>
