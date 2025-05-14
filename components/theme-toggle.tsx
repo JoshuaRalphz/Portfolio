@@ -12,6 +12,7 @@ export function ThemeToggle() {
   // Ensure component is mounted before rendering
   useEffect(() => {
     setMounted(true);
+    document.documentElement.classList.add('dark'); // Apply dark mode by default
   }, []);
 
   if (!mounted) {
